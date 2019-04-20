@@ -119,6 +119,8 @@ function login() {
       jsonUsers[i].username == username &&
       jsonUsers[i].password == password
     ) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("allContent").style.display = "visible";
     }
   }
 }
