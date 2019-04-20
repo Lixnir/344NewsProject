@@ -14,7 +14,7 @@ window.onload = function() {
 function toggleHockey() {
   var news = document.getElementsByClassName("hockey");
   var set = "";
-  if (document.getElementById("hockey").checked) {
+  if (!document.getElementById("hockey").checked) {
     set = "none";
   } else {
     set = "inherit";
@@ -27,7 +27,7 @@ function toggleHockey() {
 function toggleBaseball() {
   var news = document.getElementsByClassName("baseball");
   var set = "";
-  if (document.getElementById("baseball").checked) {
+  if (!document.getElementById("baseball").checked) {
     set = "none";
   } else {
     set = "inherit";
@@ -40,7 +40,7 @@ function toggleBaseball() {
 function toggleFootball() {
   var news = document.getElementsByClassName("football");
   var set = "";
-  if (document.getElementById("football").checked) {
+  if (!document.getElementById("football").checked) {
     set = "none";
   } else {
     set = "inherit";

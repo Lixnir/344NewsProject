@@ -83,11 +83,22 @@
         <h1>News</h1>
       </div>
       <div id="multiselect-ish">
-        Hockey: <input type="checkbox" id="hockey" onclick="toggleHockey()" /> |
+        Hockey:
+        <input type="checkbox" id="hockey" onclick="toggleHockey()" checked /> |
         Baseball:
-        <input type="checkbox" id="baseball" onclick="toggleBaseball()" /> |
-        Football:
-        <input type="checkbox" id="football" onclick="toggleFootball()" />
+        <input
+          type="checkbox"
+          id="baseball"
+          onclick="toggleBaseball()"
+          checked
+        />
+        | Football:
+        <input
+          type="checkbox"
+          id="football"
+          onclick="toggleFootball()"
+          checked
+        />
       </div>
       <div id="content">
         <p>No data has been loaded.</p>
