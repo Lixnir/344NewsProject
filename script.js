@@ -146,6 +146,13 @@ function saveJson() {
   request.open("GET", URL);
   request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
   request.send();
+  while (true) {
+    if (request.readyState == 4) {
+      console.log("status");
+      console.log(request.status);
+      break;
+    }
+  }
   console.log("json saved");
 }
 
