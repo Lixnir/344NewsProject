@@ -8,7 +8,7 @@ var baseballUrl = "http://www.espn.com/espn/rss/mbl/news";
 var footballUrl = "http://www.espn.com/espn/rss/nfl/news";
 var ajaxRequest;
 window.onload = function() {
-  init(hockeyUrl);
+  initStart();
 };
 
 var jsonUsers = [
@@ -19,32 +19,65 @@ var jsonUsers = [
 ];
 var favoriteNews = [];
 
-function init(url) {
-  //NHL URL for ESPN RSS feed
+function initStart(url) {
   console.log("Entering Init");
   document.querySelector("#content").innerHTML = "<b>Loading news...</b>";
   $("#content").fadeOut(250);
   //fetch the data
-  $.get(url).done(function(data) {
-    xmlLoaded(data);
-    console.log(data);
+  $.get(hockeyUrl).done(function(data) {
+    let array = parseXml(data);
+    array.forEach(function(item) {
+      item.sport = "hockey";
+    });
+    initBaseball(array);
   });
 }
 
-function xmlLoaded(obj) {
-  console.log("obj =");
-  console.log(obj);
+function initBaseball(previousData) {
+  console.log("Entering Init");
+  document.querySelector("#content").innerHTML = "<b>Loading news...</b>";
+  $("#content").fadeOut(250);
+  //fetch the data
+  $.get(baseballUrl).done(function(data) {
+    let array = parseXml(data);
+    array.forEach(function(item) {
+      item.sport = "baseball";
+    });
+    tempData = array.concat(previousData);
+    tempData.sort(function(a, b) {
+      a = new Date(a.pubDate);
+      b = new Date(b.pubDate);
+      return a > b ? -1 : a < b ? 1 : 0;
+    });
+    initFootball(tempData);
+  });
+}
 
+function initFootball(previousData) {
+  console.log("Entering Init");
+  document.querySelector("#content").innerHTML = "<b>Loading news...</b>";
+  $("#content").fadeOut(250);
+  //fetch the data
+  $.get(footballUrl).done(function(data) {
+    let array = parseXml(data);
+    array.forEach(function(item) {
+      item.sport = "football";
+    });
+    tempData = array.concat(previousData);
+    tempData.sort(function(a, b) {
+      a = new Date(a.pubDate);
+      b = new Date(b.pubDate);
+      return a > b ? -1 : a < b ? 1 : 0;
+    });
+    xmlLoaded(tempData);
+  });
+}
+
+function parseXml(obj) {
   var items = obj.querySelectorAll("item");
 
-  //show the logo
-  var image = obj.querySelector("image");
-  var logoSrc = image.querySelector("url").firstChild.nodeValue;
-  var logoLink = image.querySelector("link").firstChild.nodeValue;
-  $("#logo").attr("src", logoSrc);
-
   //parse the data
-  var html = "";
+  var data = [];
   for (var i = 0; i < items.length; i++) {
     //get the data out of the item
     var newsItem = items[i];
@@ -55,14 +88,29 @@ function xmlLoaded(obj) {
     var link = newsItem.querySelector("link").firstChild.nodeValue;
     var pubDate = newsItem.querySelector("pubDate").firstChild.nodeValue;
 
+    data.push({
+      newsItem,
+      title,
+      description,
+      link,
+      pubDate
+    });
+  }
+  return data;
+}
+
+function xmlLoaded(items) {
+  //parse the data
+  var html = "";
+  for (var i = 0; i < items.length; i++) {
     //present the item as HTML
     var line = '<div class="item">';
-    line += "<h2>" + title + "</h2>";
+    line += "<h2>" + items[i].title + "</h2>";
     line +=
       "<p><i>" +
-      pubDate +
+      items[i].pubDate +
       '</i> - <a href="' +
-      link +
+      items[i].link +
       '" target="_blank">See original</a></p>';
     //title and description are always the same (for some reason) so I'm only including one
     //line += "<p>"+description+"</p>";
@@ -123,7 +171,7 @@ function login() {
       jsonUsers[i].password == password
     ) {
       document.getElementById("login").style.display = "none";
-      document.getElementById("allContent").style.display = "visible";
+      document.getElementById("allContent").style.display = "inherit";
     }
   }
   if (
@@ -138,7 +186,7 @@ function login() {
     });
     saveJson();
     document.getElementById("login").style.display = "none";
-    document.getElementById("allContent").style.display = "visible";
+    document.getElementById("allContent").style.display = "inherit";
   }
 }
 
