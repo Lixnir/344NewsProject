@@ -209,9 +209,6 @@ function login() {
     ) {
       document.getElementById("login").style.display = "none";
       document.getElementById("allContent").style.display = "inherit";
-      document.getElementById("lastVisit").innerHTML = localStorage.setItem(
-        username
-      );
     }
   }
   if (
