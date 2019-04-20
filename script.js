@@ -129,7 +129,8 @@ function loadJson() {
   request.onreadystatechange = function() {
     if (this.readyState == this.DONE && this.status == 200) {
       if (this.responseText) {
-        console.log(this.responseText);
+        jsonUsers = JSON.parse(this.responseText);
+        console.log(jsonUsers);
       } else {
         console.log("Error: Data is empty");
       }
@@ -139,24 +140,12 @@ function loadJson() {
 }
 
 function saveJson() {
-  console.log("saving json");
   var users = JSON.stringify(jsonUsers);
-  console.log(users);
   var request = new XMLHttpRequest();
   var URL = "saveScript.php?data=" + encodeURI(users);
   request.open("GET", URL);
   request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
   request.send();
-  /*while (true) {
-    if (request.readyState == 4) {
-      console.log("status");
-      console.log(request.status);
-      break;
-    }
-  }*/
-  console.log("json saved");
 }
-
-saveJson();
 
 loadJson();
