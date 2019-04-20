@@ -202,9 +202,8 @@ function login() {
     ) {
       document.getElementById("login").style.display = "none";
       document.getElementById("allContent").style.display = "inherit";
-      document.getElementById("lastVisit").innerHTML = Date.parse(
-        localStorage.getItem(username)
-      );
+      let date = new Date(localStorage.getItem(username));
+      document.getElementById("lastVisit").innerHTML = date.toDateString();
     }
   }
   if (
