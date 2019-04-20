@@ -8,7 +8,7 @@ var baseballUrl = "http://www.espn.com/espn/rss/mbl/news";
 var footballUrl = "http://www.espn.com/espn/rss/nfl/news";
 var ajaxRequest;
 window.onload = function() {
-  init(allRssUrl);
+  init(hockeyUrl);
 };
 
 var jsonUsers = [
@@ -137,6 +137,8 @@ function login() {
       password: password
     });
     saveJson();
+    document.getElementById("login").style.display = "none";
+    document.getElementById("allContent").style.display = "visible";
   }
 }
 
