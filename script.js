@@ -68,7 +68,7 @@ function initStart(url) {
     array.forEach(function(item) {
       item.sport = "hockey";
     });
-    xmlLoaded(array);
+    initBaseball(array);
   });
 }
 
