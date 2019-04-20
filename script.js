@@ -83,7 +83,7 @@ function initBaseball(previousData) {
     array.forEach(function(item) {
       item.sport = "baseball";
     });
-    tempData = array.concat(previousData);
+    let tempData = array.concat(previousData);
     tempData.sort(function(a, b) {
       a = new Date(a.pubDate);
       b = new Date(b.pubDate);
@@ -103,7 +103,7 @@ function initFootball(previousData) {
     array.forEach(function(item) {
       item.sport = "football";
     });
-    tempData = array.concat(previousData);
+    let tempData = array.concat(previousData);
     tempData.sort(function(a, b) {
       a = new Date(a.pubDate);
       b = new Date(b.pubDate);
