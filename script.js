@@ -113,6 +113,9 @@ function login() {
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
 
+  console.log("user " + username);
+  console.log("pass " + password);
+
   var i = 0;
   for (i = 0; i < jsonUsers.length; i++) {
     if (
@@ -122,6 +125,17 @@ function login() {
       document.getElementById("login").style.display = "none";
       document.getElementById("allContent").style.display = "visible";
     }
+  }
+  if (
+    confirm(
+      "Your username and/or password is wrong, would you like to create a user with these credentials?"
+    )
+  ) {
+    jsonUsers.push({
+      username: username,
+      password: password
+    });
+    saveJson();
   }
 }
 
