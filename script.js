@@ -1,8 +1,6 @@
+// NOTE: BASEBALL IS NBA BECAUSE BASEBALL GAVE CORS ISSUES AND BASKETBALL DOESN'T
+
 "use strict";
-var allRssUrl = "http://www.rssmix.com/u/8316934/rss.xml";
-var baseballFootballUrl = "http://www.rssmix.com/u/8316935/rss.xml";
-var baseballHockeyUrl = "http://www.rssmix.com/u/8316937/rss.xml";
-var hockeyFootballUrl = "http://www.rssmix.com/u/8316936/rss.xml";
 var hockeyUrl = "http://www.espn.com/espn/rss/nhl/news";
 var baseballUrl = "http://www.espn.com/espn/rss/nba/news";
 var footballUrl = "http://www.espn.com/espn/rss/nfl/news";
@@ -211,6 +209,9 @@ function login() {
     ) {
       document.getElementById("login").style.display = "none";
       document.getElementById("allContent").style.display = "inherit";
+      document.getElementById("lastVisit").innerHTML = localStorage.setItem(
+        username
+      );
     }
   }
   if (
@@ -226,7 +227,9 @@ function login() {
     saveJson();
     document.getElementById("login").style.display = "none";
     document.getElementById("allContent").style.display = "inherit";
+    document.getElementById("lastVisit").innerHTML = "Never";
   }
+  localStorage.setItem(username, Date.now);
 }
 
 function loadJson() {
