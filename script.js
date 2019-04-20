@@ -11,6 +11,45 @@ window.onload = function() {
   initStart();
 };
 
+function toggleHockey() {
+  var news = document.getElementsByClassName("hockey");
+  var set = "";
+  if (document.getElementById("hockey").checked) {
+    set = "none";
+  } else {
+    set = "inherit";
+  }
+  news.forEach(function(item) {
+    item.style.display = set;
+  });
+}
+
+function toggleBaseball() {
+  var news = document.getElementsByClassName("baseball");
+  var set = "";
+  if (document.getElementById("baseball").checked) {
+    set = "none";
+  } else {
+    set = "inherit";
+  }
+  news.forEach(function(item) {
+    item.style.display = set;
+  });
+}
+
+function toggleFootball() {
+  var news = document.getElementsByClassName("football");
+  var set = "";
+  if (document.getElementById("football").checked) {
+    set = "none";
+  } else {
+    set = "inherit";
+  }
+  news.forEach(function(item) {
+    item.style.display = set;
+  });
+}
+
 var jsonUsers = [
   {
     username: "Jordan",
@@ -104,7 +143,7 @@ function xmlLoaded(items) {
   var html = "";
   for (var i = 0; i < items.length; i++) {
     //present the item as HTML
-    var line = '<div class="item">';
+    var line = '<div class="item ' + items.sport + '" >';
     line += "<h2>" + items[i].title + "</h2>";
     line +=
       "<p><i>" +
