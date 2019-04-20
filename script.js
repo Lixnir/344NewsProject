@@ -11,7 +11,12 @@ window.onload = function() {
   init(allRssUrl);
 };
 
-var jsonUsers = [];
+var jsonUsers = [
+  {
+    username: "Jordan",
+    password: "testing"
+  }
+];
 var favoriteNews = [];
 
 function init(url) {
@@ -130,6 +135,15 @@ function loadJson() {
       }
     }
   };
+  request.send();
+}
+
+function saveJson() {
+  var users = JSON.stringify(jsonUsers);
+  var request = new XMLHttpRequest();
+  var URL = "saveScript.php?data=" + encodeURI(users);
+  request.open("GET", URL);
+  request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
   request.send();
 }
 
