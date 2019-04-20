@@ -221,7 +221,7 @@ function login() {
     document.getElementById("allContent").style.display = "inherit";
     document.getElementById("lastVisit").innerHTML = "Never";
   }
-  localStorage.setItem(username, Date.now());
+  localStorage.setItem(username, Date.now().toString());
 }
 
 function loadJson() {
