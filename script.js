@@ -143,7 +143,7 @@ function xmlLoaded(items) {
   var html = "";
   for (var i = 0; i < items.length; i++) {
     //present the item as HTML
-    var line = '<div class="item ' + items.sport + '" >';
+    var line = '<div class="item ' + items[i].sport + '" >';
     line += "<h2>" + items[i].title + "</h2>";
     line +=
       "<p><i>" +
