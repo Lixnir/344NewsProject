@@ -56,8 +56,7 @@ var jsonUsers = [
 ];
 var favoriteNews = [];
 
-function initStart(url) {
-  console.log("Entering Init");
+function initStart() {
   document.querySelector("#content").innerHTML = "<b>Loading news...</b>";
   $("#content").fadeOut(250);
   //fetch the data
@@ -71,7 +70,6 @@ function initStart(url) {
 }
 
 function initBaseball(previousData) {
-  console.log("Entering Init");
   document.querySelector("#content").innerHTML = "<b>Loading news...</b>";
   $("#content").fadeOut(250);
   //fetch the data
@@ -91,7 +89,6 @@ function initBaseball(previousData) {
 }
 
 function initFootball(previousData) {
-  console.log("Entering Init");
   document.querySelector("#content").innerHTML = "<b>Loading news...</b>";
   $("#content").fadeOut(250);
   //fetch the data
@@ -119,7 +116,6 @@ function parseXml(obj) {
     //get the data out of the item
     var newsItem = items[i];
     var title = newsItem.querySelector("title").firstChild.nodeValue;
-    console.log(title);
     var description = newsItem.querySelector("description").firstChild
       .nodeValue;
     var link = newsItem.querySelector("link").firstChild.nodeValue;
@@ -198,9 +194,6 @@ function login() {
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
 
-  console.log("user " + username);
-  console.log("pass " + password);
-
   var i = 0;
   for (i = 0; i < jsonUsers.length; i++) {
     if (
@@ -226,7 +219,7 @@ function login() {
     document.getElementById("allContent").style.display = "inherit";
     document.getElementById("lastVisit").innerHTML = "Never";
   }
-  localStorage.setItem(username, Date.now);
+  localStorage.setItem(username, Date.now());
 }
 
 function loadJson() {
@@ -236,7 +229,6 @@ function loadJson() {
     if (this.readyState == this.DONE && this.status == 200) {
       if (this.responseText) {
         jsonUsers = JSON.parse(this.responseText);
-        console.log(jsonUsers);
       } else {
         console.log("Error: Data is empty");
       }
