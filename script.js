@@ -127,6 +127,7 @@ function login() {
     }
   }
   if (
+    document.getElementById("login").style.display != "none" &&
     confirm(
       "Your username and/or password is wrong, would you like to create a user with these credentials?"
     )
