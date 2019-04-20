@@ -141,18 +141,19 @@ function loadJson() {
 function saveJson() {
   console.log("saving json");
   var users = JSON.stringify(jsonUsers);
+  console.log(users);
   var request = new XMLHttpRequest();
   var URL = "saveScript.php?data=" + encodeURI(users);
   request.open("GET", URL);
   request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
   request.send();
-  while (true) {
+  /*while (true) {
     if (request.readyState == 4) {
       console.log("status");
       console.log(request.status);
       break;
     }
-  }
+  }*/
   console.log("json saved");
 }
 
