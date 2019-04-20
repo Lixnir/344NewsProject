@@ -4,7 +4,7 @@ $myData = $_GET["data"];
 $myFile = "users.json";
 $fileHandle = fopen($myFile, "w");
 
-fwrite($fileHandle, $myData);
+fwrite($fileHandle, "testing");
 fclose($fileHandle);
 
 ?>
