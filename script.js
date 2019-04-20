@@ -19,9 +19,9 @@ function toggleHockey() {
   } else {
     set = "inherit";
   }
-  news.forEach(function(item) {
+  for (let item of news) {
     item.style.display = set;
-  });
+  }
 }
 
 function toggleBaseball() {
@@ -32,9 +32,9 @@ function toggleBaseball() {
   } else {
     set = "inherit";
   }
-  news.forEach(function(item) {
+  for (let item of news) {
     item.style.display = set;
-  });
+  }
 }
 
 function toggleFootball() {
@@ -45,9 +45,9 @@ function toggleFootball() {
   } else {
     set = "inherit";
   }
-  news.forEach(function(item) {
+  for (let item of news) {
     item.style.display = set;
-  });
+  }
 }
 
 var jsonUsers = [
